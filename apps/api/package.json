@@ -1,0 +1,9 @@
+{
+  "name": "@ail/api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo \"Initialize NestJS api here\"",
+    "build": "echo \"Build api here\""
+  }
+}

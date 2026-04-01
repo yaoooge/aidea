@@ -1,0 +1,9 @@
+{
+  "name": "@ail/client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo \"Initialize uni-app app here\"",
+    "build": "echo \"Build client app here\""
+  }
+}
