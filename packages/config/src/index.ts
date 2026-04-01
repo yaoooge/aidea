@@ -1,37 +1,28 @@
-export interface NavItemConfig {
-  key: string;
-  title: string;
-  path: string;
-}
+import { getAppShellConfig } from './app-shell.js';
 
-export interface DashboardCardConfig {
-  key: string;
-  title: string;
-  enabled: boolean;
-}
+// 重新导出 schema 层的所有公共 API，外部只需引用本文件
+export type {
+  AppShellConfigParsed,
+  NavItemConfig,
+  DashboardCardConfig,
+  AiToolConfig,
+} from './schemas/app-shell.js';
+export {
+  validateAppShellConfig,
+  safeParseAppShellConfig,
+  getAppShellConfig,
+  resetAppShellConfigCache,
+  appShellConfigRaw,
+} from './app-shell.js';
 
-export interface AiToolConfig {
-  key: string;
-  title: string;
-  inputMode: 'knowledge' | 'note' | 'free';
-}
+// 模块加载时一次性初始化，后续访问均走 getAppShellConfig 内部缓存
+const config = getAppShellConfig();
 
-export const navigationConfig: NavItemConfig[] = [
-  { key: 'dashboard', title: 'Dashboard', path: '/pages/dashboard/index' },
-  { key: 'knowledge', title: 'Knowledge', path: '/pages/knowledge/index' },
-  { key: 'notes', title: 'Notes', path: '/pages/notes/index' },
-  { key: 'experiments', title: 'Experiments', path: '/pages/experiments/index' },
-  { key: 'chat', title: 'AI Chat', path: '/pages/chat/index' }
-];
+/** 已校验的导航配置 */
+export const navigationConfig = config.navigation;
 
-export const dashboardCardConfig: DashboardCardConfig[] = [
-  { key: 'overview', title: '学习概览', enabled: true },
-  { key: 'recent-knowledge', title: '最近知识', enabled: true },
-  { key: 'recent-experiments', title: '最近实验', enabled: true }
-];
+/** 已校验的 Dashboard 卡片配置 */
+export const dashboardCardConfig = config.dashboardCards;
 
-export const aiToolConfig: AiToolConfig[] = [
-  { key: 'summarize-knowledge', title: '总结知识点', inputMode: 'knowledge' },
-  { key: 'explain-concept', title: '解释概念', inputMode: 'free' },
-  { key: 'generate-plan', title: '生成学习计划', inputMode: 'note' }
-];
+/** 已校验的 AI 工具配置 */
+export const aiToolConfig = config.aiTools;

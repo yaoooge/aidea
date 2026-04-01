@@ -1,0 +1,11 @@
+---
+description: AIdea npm workspaces 与包边界约定
+alwaysApply: true
+---
+
+# Monorepo 约定
+
+- **包名**：`@ail/client`、`@ail/api`、`@ail/shared`、`@ail/config`、`@ail/ui`。
+- **依赖**：workspace 间使用 `"@ail/xxx": "*"`；路径别名优先与根 `tsconfig.base.json` 的 `paths` 对齐。
+- **配置驱动**：导航、Dashboard 卡片、AI 工具列表等展示型配置放在 `packages/config`，经 schema 校验后供前端消费（见 `docs/m1/design-config-package.md`）。
+- **新代码位置**：领域逻辑在 `apps/api/src/modules/`（后续）；共享类型在 `packages/shared`；不要跨包复制大段类型定义。

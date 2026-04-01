@@ -1,0 +1,13 @@
+---
+description: AIdea monorepo 测试驱动开发与迭代约束
+alwaysApply: true
+---
+
+# 测试驱动开发（TDD）
+
+在 **AIdea** 仓库（`AILearning`）中迭代功能时：
+
+1. **默认顺序**：先写或补测试 → 运行确认失败 → 再实现 → 再运行至通过。与根目录 `WORKFLOW.md`、`docs/development-workflow.md` 一致。
+2. **例外**：纯工程脚手架、仅配置文件重排、无行为变更的文档，可不强制新增测试。
+3. **高价值优先**：配置解析、等级/路径类纯函数、API 契约、关键集成路径优先覆盖；避免无断言的样板测试。
+4. **脚本**：提交前在根目录执行 `npm run test`；涉及风格时执行 `npm run lint`。
