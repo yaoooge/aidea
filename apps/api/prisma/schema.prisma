@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserStatus {
+  active
+  disabled
+}
+
+enum KnowledgeVisibility {
+  private
+  team
+}
+
+enum KnowledgeSourceType {
+  web
+  book
+  course
+  other
+}
+
+enum KnowledgeContentType {
+  article
+  tutorial
+  video_notes
+  cheat_sheet
+}
+
+enum DifficultyLevel {
+  intro
+  basic
+  intermediate
+}
+
+model User {
+  id           String     @id @default(cuid())
+  username     String     @unique
+  email        String     @unique
+  passwordHash String
+  displayName  String?
+  status       UserStatus @default(active)
+  preferences  Json?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  userRoles      UserRole[]
+  categories     Category[]
+  tags           Tag[]
+  knowledgeItems KnowledgeItem[]
+}
+
+model Role {
+  id        String     @id @default(cuid())
+  code      String     @unique
+  name      String?
+  userRoles UserRole[]
+}
+
+model UserRole {
+  id     String @id @default(cuid())
+  userId String
+  roleId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role   Role   @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, roleId])
+}
+
+model Category {
+  id          String  @id @default(cuid())
+  ownerUserId String
+  name        String
+  slug        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  owner            User            @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
+  knowledgeItems   KnowledgeItem[]
+
+  @@unique([ownerUserId, slug])
+  @@index([ownerUserId])
+}
+
+model Tag {
+  id          String   @id @default(cuid())
+  ownerUserId String
+  name        String
+  color       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  owner          User           @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
+  knowledgeTags  KnowledgeTag[]
+
+  @@unique([ownerUserId, name])
+  @@index([ownerUserId])
+}
+
+model KnowledgeItem {
+  id          String               @id @default(cuid())
+  title       String
+  summary     String?
+  content     String               @db.Text
+  sourceUrl   String?
+  sourceType  KnowledgeSourceType
+  contentType KnowledgeContentType
+  difficulty  DifficultyLevel
+  categoryId  String?
+  ownerUserId String
+  visibility  KnowledgeVisibility  @default(private)
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  category Category?      @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  owner    User           @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
+  tags     KnowledgeTag[]
+
+  @@index([ownerUserId, updatedAt])
+  @@index([categoryId])
+}
+
+model KnowledgeTag {
+  id              String @id @default(cuid())
+  knowledgeItemId String
+  tagId           String
+
+  knowledgeItem KnowledgeItem @relation(fields: [knowledgeItemId], references: [id], onDelete: Cascade)
+  tag           Tag           @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@unique([knowledgeItemId, tagId])
+}

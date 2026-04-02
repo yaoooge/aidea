@@ -1,1 +1,6 @@
-/* 全局样式占位 */
+// uni.scss — SCSS 预处理全局上下文
+// 注意：此文件作为 additionalData 注入每个 lang="scss" 的组件
+// CSS 自定义属性（--ail-*）已在 App.vue 中全局输出，此处无需重复导入
+//
+// 如需在 lang="scss" 组件中使用 SCSS 变量，可在此添加 $variable 声明
+// 例如：$ail-primary: #3DD68C;

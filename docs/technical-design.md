@@ -27,7 +27,7 @@
 - 框架：`NestJS`
 - 语言：`TypeScript`
 - 接口形态：`REST API`
-- 鉴权：`JWT`
+- 鉴权：长期目标 **`JWT`**；**当前 M2 工程实现**为默认用户 + 预留登录接口，见 `docs/m2/design-auth-reserved.md`
 - 参数校验：`class-validator` 或 `zod` 适配层
 
 选择原因：
@@ -391,9 +391,8 @@ export const learningPreferences = [
 
 ## 7.1 鉴权
 
-- 登录成功后返回 `accessToken`
-- 前端统一通过请求拦截器附带 token
-- 后端通过 JWT Guard 校验身份
+- **目标形态**：登录成功后返回 `accessToken`；前端通过请求拦截器附带 token；后端通过 Guard 校验身份。  
+- **当前 M2 仓库**：业务路由**不**要求 Bearer；后端将请求绑定为 seed 用户 **admin**；**`POST /auth/login` 仍返回 token** 供后续接入。详见 `docs/m2/design-auth-reserved.md`。
 
 ## 7.2 请求分层
 

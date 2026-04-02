@@ -3,14 +3,54 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "AIdea"
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/auth/login",
+      "style": {
+        "navigationBarTitleText": "鉴权预留",
+        "navigationStyle": "default"
+      }
+    },
+    {
+      "path": "pages/learning/index",
+      "style": {
+        "navigationBarTitleText": "学习路径",
+        "navigationStyle": "default"
+      }
+    },
+    {
+      "path": "pages/knowledge/index",
+      "style": {
+        "navigationBarTitleText": "知识",
+        "navigationStyle": "default"
+      }
+    },
+    {
+      "path": "pages/knowledge/detail",
+      "style": {
+        "navigationBarTitleText": "知识详情",
+        "navigationStyle": "default"
+      }
+    },
+    {
+      "path": "pages/knowledge/edit",
+      "style": {
+        "navigationBarTitleText": "编辑知识",
+        "navigationStyle": "default"
+      }
+    },
+    {
+      "path": "pages/settings/preferences",
+      "style": {
+        "navigationBarTitleText": "偏好设置",
+        "navigationStyle": "default"
       }
     }
   ],
   "globalStyle": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "AIdea",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationStyle": "custom",
+    "backgroundColor": "#0B0F1C"
   }
 }

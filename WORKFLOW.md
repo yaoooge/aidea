@@ -42,3 +42,12 @@ Cursor 侧通过 `.cursor/rules/ail-tdd.mdc` 强化该约定。
 - 技术方案：`docs/technical-design.md`
 - 里程碑：`docs/milestones.md`
 - M1 设计：`docs/m1/README.md`
+- M2 设计：`docs/m2/README.md`
+
+## 6. M2 本地联调（PostgreSQL）
+
+1. 环境变量：`apps/api/.env.development` 已提供本地默认 `DATABASE_URL` / `JWT_SECRET`（随仓库提交）。若要覆盖，在同目录创建 `.env`（优先合并）。亦见 `apps/api/.env.example`。
+2. `cd apps/api && npx prisma migrate deploy && npx prisma db seed`（开发可用 `prisma migrate dev`）。
+3. 根目录：`npm run build --workspace @ail/config`（`dev:api` / `build` 会自动先构建 config）。
+4. `npm run dev:api`；前端 `apps/client/.env.development` 已配置 `VITE_API_BASE_URL`。
+5. 集成测试：`DATABASE_URL` 与 `JWT_SECRET` 就绪时 `npm run test --workspace @ail/api` 会跑 M2 e2e（**无需**请求头 token；业务默认 admin）；否则 M2 套件自动 skip。

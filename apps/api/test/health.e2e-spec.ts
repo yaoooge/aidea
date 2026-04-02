@@ -1,17 +1,19 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
-import { AppModule } from '../src/app.module';
+import { HealthModule } from '../src/health/health.module';
+import { ApiResponseInterceptor } from '../src/common/api-response.interceptor';
 
 describe('Health (e2e)', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [HealthModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    app.useGlobalInterceptors(new ApiResponseInterceptor());
     await app.init();
   });
 
@@ -19,7 +21,12 @@ describe('Health (e2e)', () => {
     await app.close();
   });
 
-  it('GET /health returns 200 and status ok', () => {
-    return request(app.getHttpServer()).get('/health').expect(200).expect({ status: 'ok' });
+  it('GET /health returns 200 and wrapped status ok', async () => {
+    const res = await request(app.getHttpServer()).get('/health').expect(200);
+    expect(res.body).toMatchObject({
+      code: 'OK',
+      message: 'success',
+      data: { status: 'ok' },
+    });
   });
 });

@@ -12,10 +12,12 @@ export default tseslint.config(
       '**/coverage/**',
       '**/.turbo/**',
       '**/uni_modules/**',
+      '**/packages/config/dist/**',
       '**/.tmp-uni-check/**',
       // uni-app 页面以 Vue 为主，根 ESLint 当前仅统一校验 TS 包与 API；前端专用规则后续单独接入
       'apps/client/**',
       '**/jest.config.cjs',
+      'apps/api/prisma/**',
     ],
   },
   {
