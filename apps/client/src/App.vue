@@ -21,6 +21,9 @@ onHide(() => {
 /* 全局注入设计 Token（CSS 自定义属性） */
 @import './styles/theme.scss';
 
+/* 全局共享 UI 组件样式 */
+@import './styles/components.css';
+
 /* 全局基础重置 */
 page {
   background-color: var(--ail-bg);

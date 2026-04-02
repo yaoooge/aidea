@@ -44,7 +44,30 @@ Cursor 侧通过 `.cursor/rules/ail-tdd.mdc` 强化该约定。
 - M1 设计：`docs/m1/README.md`
 - M2 设计：`docs/m2/README.md`
 
-## 6. M2 本地联调（PostgreSQL）
+## 6. 前端 UI 样式规范 / 编码约束
+
+详细规范（设计 Token、`ail-` 全局类速查、页面结构模板、前后端编码约束、提交前检查清单）
+已内嵌到项目级 Claude skill，由 AI 开发时自动加载：
+
+```
+.claude/skills/aidea-dev/SKILL.md
+```
+
+### 6.1 样式文件
+
+| 文件 | 用途 |
+|------|------|
+| `apps/client/src/styles/theme.scss` | 设计 Token（`var(--ail-*)`），禁止硬编码颜色 |
+| `apps/client/src/styles/components.css` | 全局 `ail-` 组件类，`App.vue` 已全局导入 |
+
+### 6.2 `ail-` 全局类一览
+
+Section 布局 · 卡片 · 列表条目 · Badge/Chip · CTA 按钮 · FAB · 导航栏 · 空状态 · 加载状态
+→ 完整速查与代码片段见 `.claude/skills/aidea-dev/SKILL.md`
+
+---
+
+## 7. M2 本地联调（PostgreSQL）
 
 1. 环境变量：`apps/api/.env.development` 已提供本地默认 `DATABASE_URL` / `JWT_SECRET`（随仓库提交）。若要覆盖，在同目录创建 `.env`（优先合并）。亦见 `apps/api/.env.example`。
 2. `cd apps/api && npx prisma migrate deploy && npx prisma db seed`（开发可用 `prisma migrate dev`）。

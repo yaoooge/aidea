@@ -1,0 +1,438 @@
+/* ════════════════════════════════════════════════════════════
+   AIdea — Shared UI Components  (global, no scoping)
+   Prefix  : ail-
+   Unit    : rpx (mobile) → px (≥768px desktop override)
+════════════════════════════════════════════════════════════ */
+
+/* ── 1. Section layout ──────────────────────────────────── */
+.ail-section       { padding: 36rpx 36rpx 0; }
+.ail-section-first { padding-top: 48rpx; }   /* first section on headerless pages */
+.ail-section-last  { padding-bottom: 40rpx; }
+
+.ail-section-hd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22rpx;
+}
+
+.ail-section-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--ail-text-primary);
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+}
+
+.ail-section-more {
+  font-size: 24rpx;
+  color: var(--ail-primary);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ── 2. Surface card ────────────────────────────────────── */
+.ail-card {
+  background: var(--ail-surface);
+  border-radius: var(--ail-radius-md);
+  box-shadow: var(--ail-shadow-sm);
+}
+
+/* ── 3. List container + items ──────────────────────────── */
+.ail-list {
+  background: var(--ail-surface);
+  border-radius: var(--ail-radius-md);
+  box-shadow: var(--ail-shadow-sm);
+  overflow: hidden;
+}
+
+.ail-list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20rpx;
+  padding: 28rpx 28rpx 28rpx 24rpx;
+  border-bottom: 1rpx solid var(--ail-divider);
+  position: relative;
+  cursor: pointer;
+}
+
+.ail-list-item:last-child { border-bottom: none; }
+
+.ail-item-accent {
+  position: absolute;
+  left: 0;
+  top: 16rpx;
+  bottom: 16rpx;
+  width: 4rpx;
+  border-radius: 0 3rpx 3rpx 0;
+}
+
+.ail-item-icon {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 14rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ail-item-icon-t {
+  font-size: 22rpx;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.ail-item-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5rpx;
+  min-width: 0;
+}
+
+.ail-item-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--ail-text-primary);
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ail-item-hint {
+  font-size: 22rpx;
+  color: var(--ail-text-secondary);
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ail-item-meta {
+  font-size: 22rpx;
+  color: var(--ail-text-tertiary);
+  font-family: 'Outfit', sans-serif;
+  flex-shrink: 0;
+}
+
+.ail-item-chevron {
+  font-size: 32rpx;
+  color: var(--ail-text-tertiary);
+  flex-shrink: 0;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* ── 4. Badge (solid muted pill) ────────────────────────── */
+.ail-badge {
+  border-radius: var(--ail-radius-full);
+  padding: 4rpx 18rpx;
+}
+
+.ail-badge-t {
+  font-size: 21rpx;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* ── 5. Chip (outline with dot indicator) ───────────────── */
+.ail-chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8rpx;
+  padding: 8rpx 18rpx;
+  background: var(--ail-bg);
+  border-radius: var(--ail-radius-full);
+  border: 1.5rpx solid var(--ail-border);
+}
+
+.ail-chip-dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ail-chip-t {
+  font-size: 22rpx;
+  color: var(--ail-text-primary);
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+  font-weight: 500;
+}
+
+/* ── 6. CTA button (full-width bar) ─────────────────────── */
+.ail-cta {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26rpx 28rpx;
+  background: var(--ail-primary);
+  border-radius: var(--ail-radius-md);
+  cursor: pointer;
+  box-shadow: var(--ail-shadow-primary);
+}
+
+.ail-cta-t {
+  font-size: 28rpx;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+}
+
+.ail-cta-arrow {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.80);
+}
+
+/* ── 7. CTA pill (centered, not full-width) ─────────────── */
+.ail-cta-pill {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10rpx;
+  padding: 18rpx 40rpx;
+  background: var(--ail-primary);
+  border-radius: var(--ail-radius-full);
+  cursor: pointer;
+  box-shadow: var(--ail-shadow-primary);
+}
+
+.ail-cta-pill-t {
+  font-size: 26rpx;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+}
+
+.ail-cta-pill-arrow {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.80);
+}
+
+/* ── 8. FAB (fixed, mobile only) ────────────────────────── */
+.ail-fab {
+  position: fixed;
+  right: 36rpx;
+  bottom: calc(64px + 20rpx);
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  background: var(--ail-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--ail-shadow-primary);
+  z-index: 500;
+  cursor: pointer;
+}
+
+.ail-fab-icon {
+  font-size: 52rpx;
+  color: #fff;
+  font-weight: 300;
+  line-height: 1;
+  margin-top: -4rpx;
+}
+
+/* ── 9. Sub-page nav bar (back ‹ title action) ──────────── */
+.ail-nav-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 56rpx 36rpx 28rpx;
+  background: var(--ail-surface);
+  border-bottom: 1px solid var(--ail-divider);
+}
+
+.ail-nav-back {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4rpx;
+  cursor: pointer;
+  min-width: 100rpx;
+}
+
+.ail-nav-back-icon {
+  font-size: 36rpx;
+  color: var(--ail-primary);
+  font-family: 'Outfit', sans-serif;
+  line-height: 1;
+  margin-top: -2rpx;
+}
+
+.ail-nav-back-t {
+  font-size: 26rpx;
+  color: var(--ail-primary);
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+  font-weight: 500;
+}
+
+.ail-nav-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--ail-text-primary);
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+}
+
+.ail-nav-action {
+  min-width: 100rpx;
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.ail-nav-action-t {
+  font-size: 26rpx;
+  color: var(--ail-primary);
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+  font-weight: 600;
+}
+
+/* ── 10. Empty state ────────────────────────────────────── */
+.ail-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 36rpx 40rpx;
+  gap: 16rpx;
+}
+
+.ail-empty-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: var(--ail-radius-xl);
+  background: var(--ail-primary-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8rpx;
+}
+
+.ail-empty-icon-t {
+  font-size: 40rpx;
+  color: var(--ail-primary);
+  line-height: 1;
+}
+
+.ail-empty-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--ail-text-primary);
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+}
+
+.ail-empty-hint {
+  font-size: 24rpx;
+  color: var(--ail-text-secondary);
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+  text-align: center;
+}
+
+/* ── 11. Loading state ──────────────────────────────────── */
+.ail-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 36rpx;
+  gap: 20rpx;
+}
+
+.ail-loading-icon {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: var(--ail-radius-xl);
+  background: var(--ail-primary-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ail-loading-icon-t {
+  font-size: 40rpx;
+  color: var(--ail-primary);
+  line-height: 1;
+}
+
+.ail-loading-t {
+  font-size: 26rpx;
+  color: var(--ail-text-secondary);
+  font-family: 'Outfit', 'PingFang SC', sans-serif;
+}
+
+/* ════════════════════════════════════════════════════════════
+   Desktop overrides (≥ 768px)
+════════════════════════════════════════════════════════════ */
+@media screen and (min-width: 768px) {
+
+  /* Sections */
+  .ail-section        { padding: 22px 28px 0; }
+  .ail-section-first  { padding-top: 28px; }
+  .ail-section-last   { padding-bottom: 32px; }
+  .ail-section-hd     { margin-bottom: 12px; }
+  .ail-section-title  { font-size: 14px; }
+  .ail-section-more   { font-size: 12px; }
+
+  /* Cards */
+  .ail-card { border-radius: 12px; }
+  .ail-list { border-radius: 12px; }
+
+  /* List items */
+  .ail-list-item    { padding: 14px 16px 14px 12px; gap: 12px; }
+  .ail-item-accent  { top: 8px; bottom: 8px; width: 2px; }
+  .ail-item-icon    { width: 34px; height: 34px; border-radius: 8px; }
+  .ail-item-icon-t  { font-size: 13px; }
+  .ail-item-name    { font-size: 13px; }
+  .ail-item-hint    { font-size: 11px; }
+  .ail-item-meta    { font-size: 11px; }
+  .ail-item-chevron { font-size: 16px; }
+
+  /* Badge */
+  .ail-badge   { padding: 3px 10px; }
+  .ail-badge-t { font-size: 11px; }
+
+  /* Chip */
+  .ail-chip     { padding: 4px 10px; gap: 5px; border-width: 1px; }
+  .ail-chip-dot { width: 5px; height: 5px; }
+  .ail-chip-t   { font-size: 11px; }
+
+  /* CTA bar */
+  .ail-cta       { padding: 12px 16px; border-radius: 8px; }
+  .ail-cta-t     { font-size: 13px; }
+  .ail-cta-arrow { font-size: 14px; }
+
+  /* CTA pill */
+  .ail-cta-pill       { padding: 10px 20px; border-radius: 20px; gap: 6px; }
+  .ail-cta-pill-t     { font-size: 12px; }
+  .ail-cta-pill-arrow { font-size: 13px; }
+
+  /* FAB hidden on desktop */
+  .ail-fab { display: none; }
+
+  /* Nav bar */
+  .ail-nav-bar        { padding: 20px 28px; }
+  .ail-nav-back-icon  { font-size: 20px; }
+  .ail-nav-back-t     { font-size: 13px; }
+  .ail-nav-title      { font-size: 15px; }
+  .ail-nav-action-t   { font-size: 13px; }
+
+  /* Empty */
+  .ail-empty          { padding: 60px 28px 32px; gap: 12px; }
+  .ail-empty-icon     { width: 60px; height: 60px; border-radius: 16px; margin-bottom: 4px; }
+  .ail-empty-icon-t   { font-size: 24px; }
+  .ail-empty-title    { font-size: 15px; }
+  .ail-empty-hint     { font-size: 12px; }
+
+  /* Loading */
+  .ail-loading        { padding: 80px 28px; }
+  .ail-loading-icon   { width: 60px; height: 60px; border-radius: 16px; }
+  .ail-loading-icon-t { font-size: 24px; }
+  .ail-loading-t      { font-size: 13px; }
+}
